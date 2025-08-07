@@ -1,8 +1,0 @@
-.DS_Store
-db.sqlite3
-
-env/
-venv/
-ENV/
-.venv/
-.Python

@@ -1,0 +1,10 @@
+.DS_Store
+backend/db.sqlite3
+
+backend/env/
+backend/venv/
+backend/ENV/
+backend/.venv/
+backend/.Python
+
+backend/*/__pycache__

@@ -37,7 +37,7 @@ Alle bemerkenswerten Änderungen an diesem Projekt werden in diesem Dokument dok
 
 
 
-## [1.1.0] - 2024-11-21
+## [1.1.0] - 2025-11-21
 ### Geändert
 - **Bugfix:** Der Fehler beim DELETE-request von reviews wurde behoben -> 204 response ist nun möglich.
 - **Bugfix:** Der Fehler beim laden der leeren Details bei "Angebot erstellen" ist gelöst
@@ -50,6 +50,6 @@ Alle bemerkenswerten Änderungen an diesem Projekt werden in diesem Dokument dok
 - **Verbessert:** Bestellbutton wird nun disabled wenn man anbieter ist (+Userfeedback darunter)
 
 
-## [1.0.0] - 2024-10-01
+## [1.0.0] - 2025-10-01
 ### Erstveröffentlichung
 - Initiales Release des Coderr/-Projekts.

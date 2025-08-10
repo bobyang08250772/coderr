@@ -29,7 +29,7 @@ SECRET_KEY = 'django-insecure-uo6zr63(!ipgr=-pps#02$0smh%9w1n_ud@9&b4$jzb894vn)i
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+
 
 
 # Application definition
@@ -61,8 +61,10 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+ALLOWED_HOSTS = ['api.yangxin-projects.com', 'localhost', '127.0.0.1']
 CORS_ALLOWED_ORIGINS = [
     "http://127.0.0.1:5500",  # Frontend origin
+    "https://coderr.yangxin.de",
 ]
 
 ROOT_URLCONF = 'core.urls'

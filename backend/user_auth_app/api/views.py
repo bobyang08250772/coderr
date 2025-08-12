@@ -12,7 +12,7 @@ from .serializers import UserProfileSerializer, RegistrationSerializer
 from .permissions import IsOwnerOrReadOnly
 
 
-def format_user_profile_response(user_profile):
+def format_user_profile_response(user_profile, request):
     """
     Returns a dictionary of selected user and profile information 
     in a cleaner format for API responses.
@@ -20,16 +20,21 @@ def format_user_profile_response(user_profile):
     user = user_profile.user
 
     if user_profile.file and user_profile.file.name:
-        file = os.path.basename(user_profile.file.name)
+        file_name = os.path.basename(user_profile.file.name)
+        if request:
+            file_url = request.build_absolute_uri(user_profile.file.url)
+        else:
+            file_url = file_name
+
     else: 
-        file = None
+        file_url = None
 
     response_data = {
         "user": user_profile.id,
         "username": user.username,
         "first_name": user.first_name,
         "last_name":  user.last_name,
-        "file": file,
+        "file": file_url,
         "location": user_profile.location,
         "tel": user_profile.tel,
         "description": user_profile.description,
@@ -55,7 +60,7 @@ class UserProfileListView(generics.ListAPIView):
         Returns a custom-formatted list of all user profiles.
         """
         business_users = self.get_queryset()
-        query_set = [format_user_profile_response(user_profile) for user_profile in business_users]
+        query_set = [format_user_profile_response(user_profile, request) for user_profile in business_users]
         return Response(query_set, status=status.HTTP_200_OK)
 
 
@@ -88,8 +93,8 @@ class UserProfileDetailView(generics.RetrieveUpdateAPIView):
         """
         Returns detailed profile information for one user.
         """
-        response_data = format_user_profile_response(self.get_object())
-        return Response(response_data, status=status.HTTP_200_OK)
+        user_profile = self.get_object()
+        return Response(format_user_profile_response(user_profile, request), status=status.HTTP_200_OK)
     
     def update(self, request, *args, **kwargs):
         """
@@ -107,7 +112,7 @@ class UserProfileDetailView(generics.RetrieveUpdateAPIView):
         serializer.is_valid(raise_exception=True)
         self.perform_update(serializer)
         
-        return Response(format_user_profile_response(user_profile), status=status.HTTP_200_OK)
+        return Response(format_user_profile_response(user_profile, request), status=status.HTTP_200_OK)
 
 
 class UserProfileCreateView(generics.CreateAPIView):

@@ -7,6 +7,7 @@ from user_auth_app.models import UserProfile
 
 
 class UserProfileSerializer(serializers.ModelSerializer):
+
     """
     Basic serializer for reading and writing UserProfile data.
     """
@@ -14,7 +15,7 @@ class UserProfileSerializer(serializers.ModelSerializer):
         model = UserProfile
         fields = '__all__'
 
-
+ 
 class RegistrationSerializer(serializers.Serializer):
     """
     Handles user registration, including:

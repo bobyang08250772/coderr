@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
-# Production
+#Production
 STATIC_URL = '/coderr/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 

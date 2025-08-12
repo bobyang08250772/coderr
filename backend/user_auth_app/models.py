@@ -12,7 +12,7 @@ class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     type = models.CharField(max_length=10, choices=USERTYPE_CHOICES, default=CUSTOMER)
 
-    file = models.FileField(default='', upload_to='avatars/', blank=True, null=True)
+    file = models.FileField(upload_to='avatars/', blank=True, null=True)
     location = models.CharField(default='', max_length=255, blank=True, null=True)
     tel = models.CharField(default='', max_length=100, blank=True, null=True)
     description = models.TextField(default='', blank=True, null=True)

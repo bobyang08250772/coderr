@@ -8,7 +8,7 @@ from rest_framework import filters
 from rest_framework import status
 from rest_framework.exceptions import NotFound
 from django_filters.rest_framework import DjangoFilterBackend
-from django.db.models import Min, Max, Avg
+from django.db.models import Min, Max, Avg, Q
 
 
 from sales_app.models import Offer, OfferDetail, Order, UserProfile, Review
@@ -131,10 +131,16 @@ class OfferDetailDetailView(generics.RetrieveAPIView):
 
 
 class OrderListCreateView(generics.ListCreateAPIView):
-    
-    permission_classes = [IsCustomerUser]
+    permission_classes = [IsAuthenticated]
     serializer_class = OrderSerializer
-    queryset = Order.objects.all()
+    
+    def get_queryset(self):
+        user_profile = self.request.user.userprofile
+
+        if user_profile.type == 'customer':
+            return Order.objects.filter(customer_user=user_profile)
+        elif user_profile.type == 'business':
+            return Order.objects.filter(offer_detail__offer__user_profile=user_profile)
 
 
 class OrderDetailView(generics.RetrieveUpdateDestroyAPIView):

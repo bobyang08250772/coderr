@@ -9,8 +9,8 @@ const GUEST_LOGINS = {
     }
 }
 
-const API_BASE_URL = 'https://api.yangxin-projects.com/coderr/api/';
-const STATIC_BASE_URL = 'https://api.yangxin-projects.com/coderr/';
+const API_BASE_URL = 'https://xin-yang.developerakademie.org/coderr/api/';
+const STATIC_BASE_URL = 'https://xin-yang.developerakademie.org/coderr/';
 
 const LOGIN_URL = 'login/';
 

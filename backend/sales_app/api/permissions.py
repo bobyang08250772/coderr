@@ -34,6 +34,26 @@ class IsStaffForDeleteOrBusinessForPatch(IsAuthenticated):
         elif request.method == 'PATCH':
             return hasattr(user, 'userprofile') and user.userprofile.type == 'business'
         return False
+    
+class IsCustomerOrBusinessUser(BasePermission):
+    def has_permission(self, request, view):
+        user = request.user
+        if not user.is_authenticated:
+            return False
+        if not hasattr(user, 'userprofile'):
+            return False
+        
+        # Kunden haben immer Zugriff
+        if user.userprofile.type == 'customer':
+            return True
+        
+        # Business-Nutzer nur bei sicheren Methoden (GET, HEAD, OPTIONS)
+        if user.userprofile.type == 'business':
+            if request.method in SAFE_METHODS:
+                return True
+        
+        return False
+
 
 
 class IsCustomerUser(IsAuthenticated):

@@ -75,7 +75,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ALLOWED_HOSTS = ['api.yangxin-projects.com', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['xin-yang.developerakademie.org', 'localhost', '127.0.0.1']
 CORS_ALLOWED_ORIGINS = [
     "http://127.0.0.1:5500",  # Frontend origin
     "https://coderr.yangxin.de",
